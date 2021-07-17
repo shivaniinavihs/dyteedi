@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  
+}
+.top-pane
+{
+  background-color: hsl(39, 100%, 50%);
+}
+.pane{
+  height: 50vh;
+  display:flex;
+}
+.edi-container{
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  background-color: hsl(39, 100%, 50%);
+
+}
+.edi-container.collapsed{
+  flex-grow: 0;
+}
+.edi-container.collapsed .CodeMirror-scroll{
+  position:absolute;
+  overflow: hidden !important;
+}
+.expand-collapse-btn{
+  margin-left: .5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+
+}
+.edi-title{
+  display: flex;
+  justify-content: space-between;
+  background-color: hsla(39, 100%, 40%, 0.822);
+  color: black;
+  padding: .5rem .5rem .5rem 1rem;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  
+}
+.CodeMirror{
+  height:100% !important;
+}
+.code-mirror-wrapper{
+  flex-grow: 1;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  overflow: hidden;
+
+}
