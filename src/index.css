@@ -54,3 +54,13 @@ body {
   overflow: hidden;
 
 }
+.file-explorer{
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: aqua;
+}
+
+.file-explorer div{
+  cursor: pointer;
+}

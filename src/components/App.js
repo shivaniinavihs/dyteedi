@@ -10,6 +10,9 @@ function App() {
   const [css, setCss] = useLocalStorage('css','')
   const [js, setJs] = useLocalStorage('js','')
   const [srcDoc, setSrcDoc] = useState('')
+  const [showHtmlPanel, setShowHtmlPanel] = useState(true)
+  const [showCssPanel, setShowCssPanel] = useState(true)
+  const [showJsPanel, setShowJsPanel] = useState(true)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -22,30 +25,51 @@ function App() {
     }, 250)
     return () => clearTimeout(timeout)
   }, [html, css, js])
+  const htmlPanelHandler = () => {
+    setShowHtmlPanel(!showHtmlPanel)
+  }
 
+  const CssPanelHandler = () => {
+    setShowCssPanel(!showCssPanel)
+  }
+
+  const JsPanelHandler = () => {
+    setShowJsPanel(!showJsPanel)
+  }
   return (
     <>
+        <div className="file-explorer">
+      <div onClick={htmlPanelHandler}>HTML</div>
+      <div onClick={CssPanelHandler}>CSS</div>
+      <div onClick={JsPanelHandler}>JAVASCRIPT</div>
+    </div>
       <div className="pane top-pane">
-        <Editor
-          language="xml"
-          dispname="HTML"
-          value={html}
-          onChange={setHtml}
-        />
 
+        {showHtmlPanel && 
+                <Editor
+                language="xml"
+                dispname="HTML"
+                value={html}
+                onChange={setHtml}
+              />
+        }
+
+        {showCssPanel &&         
         <Editor
           language="css"
           dispname="CSS"
           value={css}
           onChange={setCss}
-        />
+        />}
 
+        {showJsPanel && 
         <Editor
-          language="javaScript"
-          dispname="JS"
-          value={js}
-          onChange={setJs}
-        />
+        language="javaScript"
+        dispname="JS"
+        value={js}
+        onChange={setJs}
+              />
+        }
       </div>
       <div className="pane">
         <iframe
