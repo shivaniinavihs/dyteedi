@@ -10,9 +10,9 @@ function App() {
   const [css, setCss] = useLocalStorage('css','')
   const [js, setJs] = useLocalStorage('js','')
   const [srcDoc, setSrcDoc] = useState('')
-  const [showHtmlPanel, setShowHtmlPanel] = useState(true)
-  const [showCssPanel, setShowCssPanel] = useState(true)
-  const [showJsPanel, setShowJsPanel] = useState(true)
+  const [showHtmlPanel, setShowHtmlPanel] = useState(true);
+  const [showCssPanel, setShowCssPanel] = useState(false);
+  const [showJsPanel, setShowJsPanel] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -26,16 +26,22 @@ function App() {
     return () => clearTimeout(timeout)
   }, [html, css, js])
   const htmlPanelHandler = () => {
-    setShowHtmlPanel(!showHtmlPanel)
-  }
+    setShowHtmlPanel(!showHtmlPanel);
+    setShowJsPanel(false)
+    setShowCssPanel(false)
+  };
 
   const CssPanelHandler = () => {
-    setShowCssPanel(!showCssPanel)
-  }
+    setShowCssPanel(!showCssPanel);
+    setShowHtmlPanel(false);
+    setShowJsPanel(false)
+  };
 
   const JsPanelHandler = () => {
-    setShowJsPanel(!showJsPanel)
-  }
+    setShowJsPanel(!showJsPanel);
+    setShowHtmlPanel(false);
+    setShowCssPanel(false)
+  };
   return (
     <>
         <div className="file-explorer">
